@@ -1,0 +1,56 @@
+{
+  "name": "vivarium/equality",
+  "description": "A library for checking object equality.",
+  "type": "library",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Luca Cantoreggi",
+      "email": "luca@cn7r66.com"
+    }
+  ],
+  "require": {
+    "php": ">7.4"
+  },
+  "require-dev": {
+    "doctrine/coding-standard": "^8.0",
+    "infection/infection": "^0.21",
+    "phpmd/phpmd": "^2.0",
+    "phpstan/phpstan": "^0.12",
+    "phpstan/phpstan-strict-rules": "^0.12",
+    "phpunit/phpunit": "^9.3",
+    "psalm/plugin-phpunit": "^0.15",
+    "vimeo/psalm": "^4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Vivarium\\Equality\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Vivarium\\Equality\\Test\\": "tests"
+    }
+  },
+  "scripts": {
+    "infection": "vendor/bin/infection --coverage=tests-results/phpunit --min-msi=80 --min-covered-msi=85 --threads=4",
+    "phpcs":     "vendor/bin/phpcs --report=junit --report-file=tests-results/phpcs/phpcs.xml src",
+    "psalm":     "vendor/bin/psalm --output-format=checkstyle > tests-results/psalm/psalm.xml",
+    "phpstan":   "vendor/bin/phpstan analyse --no-ansi --error-format=checkstyle > tests-results/phpstan/phpstan.xml",
+    "phpunit":   "vendor/bin/phpunit",
+
+    "check" : [
+      "@phpcs",
+      "@phpstan",
+      "@psalm"
+    ],
+
+    "test" : [
+      "@phpunit",
+      "@infection"
+    ]
+  }
+
+}
