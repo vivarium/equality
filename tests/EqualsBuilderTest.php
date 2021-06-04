@@ -259,7 +259,7 @@ final class EqualsBuilderTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return array{0: array{0: array<int>, 1: int}, 1: array{0: float, 1:string}}
      */
     public function getTestAppendMixedData(): array
     {
@@ -276,9 +276,9 @@ final class EqualsBuilderTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return array{0: array<int>, 1: array<float>, 2: array<Equality>, 3: array<array<int>>}
      */
-    public function getClonePointData(): array
+    public function getClonePointData(): array // phpcs:disable
     {
         $equality = $this->createMock(Equality::class);
         $equality->method('equals')

@@ -132,7 +132,7 @@ final class HashBuilderTest extends TestCase
     }
 
     /**
-     * @return array<array-key, array{0: array, 1: string}>
+     * @return array{0: array{0: array<int>, 1: string}, 1: array{0: array<object>, 1: string}}
      */
     public function getTestAppendEachData(): array
     {
@@ -140,21 +140,19 @@ final class HashBuilderTest extends TestCase
         $stdClass->foo = 42;
 
         return [
-            'Array of Integers' =>
-                [
-                    [1, 2, 3],
-                    '7c2678ec2441f93934da8c3ca4b3963732389f81',
-                ],
-            'Array of object' =>
-                [
-                    [$stdClass, $stdClass, $stdClass],
-                    '1ca89941fad4952004a41e449f414e8213a4e80a',
-                ],
+            [
+                [1, 2, 3],
+                '7c2678ec2441f93934da8c3ca4b3963732389f81',
+            ],
+            [
+                [$stdClass, $stdClass, $stdClass],
+                '1ca89941fad4952004a41e449f414e8213a4e80a',
+            ],
         ];
     }
 
     /**
-     * @return array[]
+     * @return array{0: array<int>, 1: array<float>, 2: array<Equality>, 3: array{empty?: int}, 4: array<callable>}
      */
     public function getClonePointData(): array
     {
@@ -169,7 +167,7 @@ final class HashBuilderTest extends TestCase
                 [],
             ],
             [
-                static function () : int {
+                static function (): int {
                     return 1 + 1;
                 },
             ],
