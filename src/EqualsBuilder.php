@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace Vivarium\Equality;
 
+use Vivarium\Float\NearlyEquals;
+
 use function count;
 use function is_array;
 use function is_float;
@@ -61,8 +63,8 @@ final class EqualsBuilder
     }
 
     /**
-     * @param mixed[] $first
-     * @param mixed[] $second
+     * @param array<mixed> $first
+     * @param array<mixed> $second
      */
     private function appendEach(array $first, array $second): EqualsBuilder
     {
