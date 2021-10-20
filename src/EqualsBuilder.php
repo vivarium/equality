@@ -18,6 +18,9 @@ use function is_array;
 use function is_float;
 use function is_object;
 
+/**
+ * @psalm-immutable
+ */
 final class EqualsBuilder
 {
     private bool $isEquals;
@@ -69,19 +72,15 @@ final class EqualsBuilder
      */
     private function appendEach(array $first, array $second): EqualsBuilder
     {
-        $builder           = clone $this;
-        $builder->isEquals = $this->isEquals;
         if (count($first) !== count($second)) {
-            $builder->isEquals = false;
-
-            return $builder;
+            return $this->reject();
         }
 
+        $builder           = clone $this;
+        $builder->isEquals = $this->isEquals;
         foreach (array_keys($first) as $key) {
             if (! isset($second[$key])) {
-                $builder->isEquals = false;
-
-                return $builder;
+                return $builder->reject();
             }
 
             $builder = $builder->append($first[$key], $second[$key]);
@@ -101,5 +100,13 @@ final class EqualsBuilder
     public function isEquals(): bool
     {
         return $this->isEquals;
+    }
+
+    private function reject(): EqualsBuilder
+    {
+        $builder           = clone $this;
+        $builder->isEquals = false;
+
+        return $builder;
     }
 }

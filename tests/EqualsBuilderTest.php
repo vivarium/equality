@@ -57,6 +57,7 @@ final class EqualsBuilderTest extends TestCase
      * @covers ::append
      * @covers ::appendEach
      * @covers ::isEquals
+     * @covers ::reject
      * @dataProvider getTestAppendEachData
      */
     public function testAppendEach(array $array1, array $array2, bool $expected): void
@@ -317,6 +318,9 @@ final class EqualsBuilderTest extends TestCase
                 [1, 2, 4],
                 [4, 5, 6, 7],
             ],
+            [
+                [], []
+            ]
         ];
     }
 }
