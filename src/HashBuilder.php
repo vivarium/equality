@@ -12,7 +12,7 @@ namespace Vivarium\Equality;
 
 use Closure;
 
-use function count;
+use function array_keys;
 use function is_array;
 use function is_object;
 use function serialize;
@@ -62,8 +62,9 @@ final class HashBuilder
     private function appendEach(array $array): HashBuilder
     {
         $builder = clone $this;
-        for ($i = 0; $i < count($array); $i++) {
-            $builder = $builder->append($array[$i]);
+        foreach (array_keys($array) as $key) {
+            $builder = $builder->append($key);
+            $builder = $builder->append($array[$key]);
         }
 
         return $builder;

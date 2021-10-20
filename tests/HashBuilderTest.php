@@ -142,11 +142,19 @@ final class HashBuilderTest extends TestCase
         return [
             [
                 [1, 2, 3],
-                '7c2678ec2441f93934da8c3ca4b3963732389f81',
+                '5d412d63565a48053ec0b58fd97b98b6e7090ea4',
             ],
             [
                 [$stdClass, $stdClass, $stdClass],
-                '1ca89941fad4952004a41e449f414e8213a4e80a',
+                '64a2be69d872b5787f9c3ed872da857cda804a51',
+            ],
+            [
+                ['a' => 1, 'b' => 2],
+                '381ba48afb9497d12392200c7ba6d2eafd82e77e',
+            ],
+            [
+                ['a' => 1, 'b' => 2, 'c' => ['a', 'b', 'c' => [3 => 'c']]],
+                '9356b8b9c963674063a6d422c8b21eeccd890148',
             ],
         ];
     }
