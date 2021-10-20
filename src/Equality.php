@@ -12,7 +12,13 @@ namespace Vivarium\Equality;
 
 interface Equality
 {
+    /**
+     * @psalm-mutation-free
+     */
     public function equals(object $object): bool;
 
+    /**
+     * @psalm-mutation-free
+     */
     public function hash(): string;
 }
