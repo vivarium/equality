@@ -45,15 +45,19 @@ jobs:
 
       - name: Run Code Sniffer
         run: composer phpcs
+        continue-on-error: true
 
       - name: Run Mess Detector
         run: composer phpmd
+        continue-on-error: true
 
       - name: Run PHPStan
         run: composer phpstan
+        continue-on-error: true
 
       - name: Run Psalm
         run: composer psalm
+        continue-on-error: true
 
       - name: Run PHPUnit
         run: composer phpunit
