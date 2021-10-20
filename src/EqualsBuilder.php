@@ -12,6 +12,7 @@ namespace Vivarium\Equality;
 
 use Vivarium\Float\NearlyEquals;
 
+use function array_keys;
 use function count;
 use function is_array;
 use function is_float;
@@ -76,8 +77,14 @@ final class EqualsBuilder
             return $builder;
         }
 
-        for ($i = 0; $i < count($first); $i++) {
-            $builder = $builder->append($first[$i], $second[$i]);
+        foreach (array_keys($first) as $key) {
+            if (! isset($second[$key])) {
+                $builder->isEquals = false;
+
+                return $builder;
+            }
+
+            $builder = $builder->append($first[$key], $second[$key]);
         }
 
         return $builder;

@@ -175,7 +175,7 @@ final class EqualsBuilderTest extends TestCase
     }
 
     /**
-     * @return array<array-key, array{0: array<scalar>, 1: array<scalar>, 2: bool}>
+     * @return array<array-key, array{0: array<mixed>, 1: array<mixed>, 2: bool}>
      */
     public function getTestAppendEachData(): array
     {
@@ -196,6 +196,30 @@ final class EqualsBuilderTest extends TestCase
                 [
                     [1, 2, 3],
                     [1, 2, 3, 4],
+                    false,
+                ],
+            'Associative Array' =>
+                [
+                    ['a' => 1, 'b' => 2],
+                    ['a' => 1, 'b' => 2],
+                    true,
+                ],
+            'Associative Array inequality' =>
+                [
+                    ['a' => 1, 'b' => 2],
+                    ['a' => 1, 'z' => 2],
+                    false,
+                ],
+            'Multilevel Associative Array' =>
+                [
+                    ['a' => 1, 'b' => ['1', '2', 'z' => 'k']],
+                    ['a' => 1, 'b' => ['1', '2', 'z' => 'k']],
+                    true,
+                ],
+            'Multilevel Associative Array Inequality' =>
+                [
+                    ['a' => 1, 'b' => ['1', '2', 'z' => 'k']],
+                    ['a' => 1, 'b' => ['1', '2', 'q' => 'k']],
                     false,
                 ],
         ];
