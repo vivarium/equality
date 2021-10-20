@@ -15,6 +15,8 @@ final class Equal
     /**
      * @param mixed $first
      * @param mixed $second
+     *
+     * @psalm-pure
      */
     public static function areEquals($first, $second): bool
     {
@@ -25,6 +27,8 @@ final class Equal
 
     /**
      * @param mixed $element
+     *
+     * @psalm-pure
      */
     public static function hash($element): string
     {
